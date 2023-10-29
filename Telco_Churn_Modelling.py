@@ -47,7 +47,7 @@
 #####################
 
 ###############
-#Needed libraries und Functions
+#Required libraries und functions
 ###############
 
 import warnings
@@ -96,7 +96,7 @@ warnings.simplefilter(action='ignore', category=Warning)
 df=pd.read_csv("DataScience/datasets/TelcoCustomerChurn-230423-212029.csv")
 
 ####################
-#Observations
+#Overview
 ####################
 
 def check_df(dataframe, head=5):
@@ -126,32 +126,32 @@ df.dtypes
 df.head()
 
 ######################
-#Captures numeric and categorical variables.
+#Capture numeric and categorical variables.
 ######################
 
 def grab_col_names(dataframe, cat_th=10, car_th=20):
     """
 
-    Veri setindeki kategorik, numerik ve kategorik fakat kardinal değişkenlerin isimlerini verir.
-    Not: Kategorik değişkenlerin içerisine numerik görünümlü kategorik değişkenler de dahildir.
+    Returns the names of categorical, numeric and categorical but cardinal variables in the data set.
+    Note: Categorical variables include categorical variables with numeric appearance.
 
     Parameters
     ------
         dataframe: dataframe
-                Değişken isimleri alınmak istenilen dataframe
+                Dataframe to get variable names
         cat_th: int, optional
-                numerik fakat kategorik olan değişkenler için sınıf eşik değeri
+                threshold for numeric but categorical variables
         car_th: int, optional
-                kategorik fakat kardinal değişkenler için sınıf eşik değeri
+                threshold for categorical but cardinal variables
 
     Returns
     ------
         cat_cols: list
-                Kategorik değişken listesi
+                List of categorical variables
         num_cols: list
-                Numerik değişken listesi
+                List of numerical variables
         cat_but_car: list
-                Kategorik görünümlü kardinal değişken listesi
+                List of cardinal variables with categorical appearance
 
     Examples
     ------
@@ -162,8 +162,8 @@ def grab_col_names(dataframe, cat_th=10, car_th=20):
 
     Notes
     ------
-        cat_cols + num_cols + cat_but_car = toplam değişken sayısı
-        num_but_cat cat_cols'un içerisinde.
+        cat_cols + num_cols + cat_but_car = total number of variables
+        num_but_cat is inside cat_cols
 
     """
     # cat_cols, cat_but_car
@@ -432,26 +432,26 @@ df.shape
 def grab_col_names(dataframe, cat_th=10, car_th=20):
     """
 
-    Veri setindeki kategorik, numerik ve kategorik fakat kardinal değişkenlerin isimlerini verir.
-    Not: Kategorik değişkenlerin içerisine numerik görünümlü kategorik değişkenler de dahildir.
+Returns the names of categorical, numeric and categorical but cardinal variables in the data set.
+    Note: Categorical variables include categorical variables with numeric appearance.
 
     Parameters
     ------
         dataframe: dataframe
-                Değişken isimleri alınmak istenilen dataframe
+                Dataframe to get variable names
         cat_th: int, optional
-                numerik fakat kategorik olan değişkenler için sınıf eşik değeri
+                threshold for numeric but categorical variables
         car_th: int, optional
-                kategorik fakat kardinal değişkenler için sınıf eşik değeri
+                threshold for categorical but cardinal variables
 
     Returns
     ------
         cat_cols: list
-                Kategorik değişken listesi
+                List of categorical variables
         num_cols: list
-                Numerik değişken listesi
+                List of numerical variables
         cat_but_car: list
-                Kategorik görünümlü kardinal değişken listesi
+                List of cardinal variables with categorical appearance
 
     Examples
     ------
@@ -462,10 +462,11 @@ def grab_col_names(dataframe, cat_th=10, car_th=20):
 
     Notes
     ------
-        cat_cols + num_cols + cat_but_car = toplam değişken sayısı
-        num_but_cat cat_cols'un içerisinde.
-
+        cat_cols + num_cols + cat_but_car = total number of variables
+        num_but_cat is inside cat_cols
+    
     """
+    
     # cat_cols, cat_but_car
     cat_cols = [col for col in dataframe.columns if dataframe[col].dtypes == "O"]
     num_but_cat = [col for col in dataframe.columns if dataframe[col].nunique() < cat_th and dataframe[col].dtypes != "O"]
